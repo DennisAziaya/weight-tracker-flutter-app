@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:provider/provider.dart';
+import 'package:weight_tracker_app/screens/home_screen.dart';
 
 import '../../providers/auth_provider.dart';
 import 'login_screen.dart';
@@ -212,11 +213,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     try {
       await provider.signUpUser(
           _emailController.text, _passwordController.text);
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.green,
-          content: Text('Account Successfully created, you can now login')));
+          content: Text('Account Successfully created')));
     } catch (error) {
       setState(() {
         errorMessage = error.toString().replaceAll('Exception:', "");

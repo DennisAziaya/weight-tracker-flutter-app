@@ -62,10 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         weightTitle: _allRecords[index].weight,
                         date: DateFormat.yMMMMd('en_US')
                             .format(_allRecords[index].entryDate),
-                        //date: _records[index].entryDate,
-                        //DateFormat.yMMMMd('en_US').format();
                         onTapEdit: () {
-                          //weightData.editRecord(_records[index].id);
                           showModalBottomSheet<void>(
                               context: context,
                               builder: (BuildContext context) {
@@ -76,7 +73,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               });
                         },
                         onTapDelete: () {
-                          //weightData.removeRecord(_records[index].id);
                           showDialog<void>(
                               context: context,
                               builder: (BuildContext context) {
@@ -115,7 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         },
                                         child: const Text(
                                           'Cancel',
-                                          //style: TextStyle(color: Colors.blue),
                                         )),
                                   ],
                                 );

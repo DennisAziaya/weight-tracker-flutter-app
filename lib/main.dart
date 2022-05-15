@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:weight_tracker_app/providers/auth_provider.dart';
 import 'package:weight_tracker_app/providers/weight_provider.dart';
 import 'package:weight_tracker_app/screens/authentication/login_screen.dart';
+import 'package:weight_tracker_app/screens/authentication/register_screen.dart';
 import 'package:weight_tracker_app/screens/home_screen.dart';
 
 void main() {
@@ -12,7 +13,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             '/': (context) =>
                 Provider.of<AuthProvider>(context).isUserAuthenticated
                     ? const HomeScreen()
-                    : const LoginScreen(),
+                    : const RegisterScreen(),
           }),
     );
   }

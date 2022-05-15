@@ -212,8 +212,6 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await provider.signInUser(
           _emailController.text, _passwordController.text);
-      // Navigator.pushReplacement(
-      //     context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     } catch (error) {
       setState(() {
         errorMessage = error.toString().replaceAll('Exception:', "");

@@ -21,8 +21,6 @@ class AuthProvider extends ChangeNotifier {
     return "";
   }
 
-  //bool isAuthenticated = false;
-
   String apiKey = 'AIzaSyD7m2ahUwZ5QbqRhD8IlV8BgOebYT7ZfPM';
   String baseUrl = "https://identitytoolkit.googleapis.com/v1/accounts:";
 
@@ -35,10 +33,10 @@ class AuthProvider extends ChangeNotifier {
             HttpHeaders.contentTypeHeader: "application/jason",
             HttpHeaders.acceptHeader: "application/jason"
           },
-          body: json.encode({
+          body: jsonEncode({
             "email": email,
             "password": password,
-            "returnSecureToken": true
+            "returnSecureToken": true,
           }));
 
       final rs = json.decode(response.body);
@@ -49,6 +47,13 @@ class AuthProvider extends ChangeNotifier {
           throw Exception("User with this email already exist");
         }
       }
+
+      _token = rs['idToken'];
+      _userId = rs['localId'];
+
+      final _tokenDuration = int.parse(rs['expiresIn']);
+      _expiryDate = DateTime.now().add(Duration(seconds: _tokenDuration));
+      notifyListeners();
     } catch (error) {
       rethrow;
     }
@@ -62,7 +67,6 @@ class AuthProvider extends ChangeNotifier {
           headers: {
             HttpHeaders.contentTypeHeader: "application/jason",
             HttpHeaders.acceptHeader: "application/jason",
-            //HttpHeaders.authorizationHeader: "Bearer $_token"
           },
           body: jsonEncode({
             "email": email,
@@ -84,7 +88,7 @@ class AuthProvider extends ChangeNotifier {
       _token = rs['idToken'];
       _userId = rs['localId'];
 
-      int _tokenDuration = int.parse(rs['expiresIn']);
+      final _tokenDuration = int.parse(rs['expiresIn']);
       _expiryDate = DateTime.now().add(Duration(seconds: _tokenDuration));
       notifyListeners();
     } catch (error) {
