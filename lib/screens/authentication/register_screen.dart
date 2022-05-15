@@ -214,6 +214,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _emailController.text, _passwordController.text);
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => const LoginScreen()));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          backgroundColor: Colors.green,
+          content: Text('Account Successfully created, you can now login')));
     } catch (error) {
       setState(() {
         errorMessage = error.toString().replaceAll('Exception:', "");
