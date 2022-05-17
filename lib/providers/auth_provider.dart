@@ -21,7 +21,7 @@ class AuthProvider extends ChangeNotifier {
     return "";
   }
 
-  String apiKey = 'AIzaSyD7m2ahUwZ5QbqRhD8IlV8BgOebYT7ZfPM';
+  String apiKey = '';
   String baseUrl = "https://identitytoolkit.googleapis.com/v1/accounts:";
 
   Future<void> signUpUser(String email, String password) async {
