@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             create: (BuildContext context) => WeightDataProvider('', []),
             update: (BuildContext context, auth, previous) =>
                 WeightDataProvider(auth.token,
-                    previous!.dataRecord == null ? [] : previous.dataRecord)),
+                    previous!.dataRecord.isEmpty ? [] : previous.dataRecord)),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             '/': (context) =>
                 Provider.of<AuthProvider>(context).isUserAuthenticated
                     ? const HomeScreen()
-                    : const RegisterScreen(),
+                    : const LoginScreen(),
           }),
     );
   }
